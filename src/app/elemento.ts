@@ -1,10 +1,11 @@
 export class Elemento {
     constructor(
         public id: number,
-        public name: string,
+        public nombre: string,
+        public titulo:string,
+        public descripcion:string,
         public classType: string,
-        public anotation: string,
-        public info : string
+        public contDinamico: string
     ) { }
 
 }

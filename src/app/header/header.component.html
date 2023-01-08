@@ -1,25 +1,24 @@
 <section class="header ">
-    <div class="header-button">
+    <div *ngIf="isLogged" class="header-button">
         <i class="fa fa-pencil-square fa-2x" aria-hidden="true"></i>
     </div>
     <div class="banner">
         <picture>
-            <img class="img-banner" src="../assets/img/erica-magugliani-olSh3t6DGSk-unsplash.jpg" alt="">
+            <img class="img-banner" src="../assets/img/{{header.imgback}}" alt="">
         </picture>
+        <div class="img-credits">Foto de {{header.imgcred}}</div>
     </div>
     <div class="header-data">
         <picture class="personal-picture">
-            <img src="../assets/img/20180612_005858.jpg" alt="">
+            <img src="../assets/img/{{header.imgpersona}}" alt="">
         </picture>
         <div class="header-info">
-            <h3 class="title-info">Daniel Refchke</h3>
+            <h3 class="title-info">{{header.nombre}}</h3>
             <p class="about">
-                Full Stack Developer Jr
+                {{header.titulo}}
             </p>
             <p class="description-info">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Amet eius distinctio officiis totam
-                voluptatem quia expedita obcaecati. Ipsum similique fuga et esse optio. Laboriosam eaque hic
-                voluptate quo, nemo maiores!
+                {{header.descripcion}}
             </p>
         </div>
     </div>

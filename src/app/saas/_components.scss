@@ -21,6 +21,13 @@
       object-fit: cover;
       border-radius: 5px;
     }
+
+    .img-credits {
+      text-align: end;
+      margin-top: -1.25rem;
+      margin-right: 1.25rem;
+      font-size: xx-small;
+    }
   }
   .header-data {
     display: flex;
@@ -79,6 +86,8 @@
 
   i {
     cursor: pointer;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
   }
 }
 
@@ -130,9 +139,19 @@
 
   .element-languaje {
     font-size: 4rem;
+    max-width: 5rem;
+    min-width: 5rem;
+  }
+
+  .element-grap {
+    .circlegrap {
+      max-width: 5rem;
+      min-width: 5rem;
+    }
   }
 
   .element-content {
+    width: 99%;
     .title-element {
       .title-element-text {
         font-weight: 600;
@@ -153,7 +172,6 @@
 
       a {
         @include link-base();
-        
       }
     }
 
@@ -167,17 +185,17 @@
 }
 
 .element-list-table {
-  @include list-base();
-  flex-direction: row;
-  flex-wrap: wrap;
-
-
-  .element {
-    max-width: 35%;
-    min-width: 35%;
-    margin: auto;
-    margin-bottom: 2rem;
-    margin-top: 0px;
+  app-item {
+    @include list-base();
+    flex-direction: row;
+    flex-wrap: wrap;
+    .element {
+      max-width: 35%;
+      min-width: 35%;
+      margin: auto;
+      margin-bottom: 2rem;
+      margin-top: 0px;
+    }
   }
 }
 
@@ -212,7 +230,38 @@
   }
 }
 
+@mixin messages{
+  border-radius: 5px;
+  margin: 0.25rem;
+  padding: 0.5rem;
+  &::before {
+    font-family: FontAwesome;
+    content: "\f071";
+    margin-right: 3px;
+    margin-left: 3px;
+  }
+}
+.error-message {
+  @include messages();
+  
+  &::before {
+    content: "\f071";
+  }
+}
+
+.success-message {
+  @include messages();
+
+  &::before {
+    content: "\f00c";
+  }
+}
+
 @media (max-width: 576px) {
+  .img-credits {
+    visibility: hidden;
+  }
+
   .header {
     .header-data {
       flex-direction: column;
@@ -228,8 +277,8 @@
     }
   }
 
-  .element-description{
-    a{
+  .element-description {
+    a {
       display: block;
       margin: 0.2rem;
       clear: both;
@@ -238,7 +287,7 @@
   }
   .go-btns {
     margin: 0.5rem;
-    .button-group{
+    .button-group {
       padding: 0rem;
       display: flex;
       flex-direction: column;

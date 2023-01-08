@@ -1,0 +1,71 @@
+<div class="modal fade modal-lg" id="modalitem" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form id="itemform" [formGroup]="formulario" onsubmit="return false;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Editar Elemento</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col">
+                            <label for="tipoelemento" class="col-form-label">Tipo:</label>
+                            <select class="form-control" id="tipoelemento"     formControlName="classType">
+                                <option *ngFor="let opt of TypeElement" [value]="opt.key">
+                                    {{opt.value}}</option>
+                            </select>
+                            <div *ngIf="ClassType?.errors  && ClassType?.touched">
+                                <p *ngIf="ClassType?.hasError('required')" class="error-message bg-danger text-white">
+                                    El tipo de elemento es requerido.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label for="contDinamico" class="col-form-label">Valor:</label>
+                            <input type="text" class="form-control" id="contDinamico" formControlName="contDinamico" placeholder="">
+                            <div *ngIf="ContenidoDinamico?.errors  && ContenidoDinamico?.touched">
+                                <p *ngIf="ContenidoDinamico?.hasError('required')" class="error-message bg-danger text-white">
+                                    El valor del tipo es requerido.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nombreitem" class="col-form-label">Nombre:</label>
+                        <input type="text" class="form-control" id="nombreitem" formControlName="nombre" placeholder="" >
+                        <div *ngIf="Nombre?.errors  && Nombre?.touched">
+                            <p *ngIf="Nombre?.hasError('required')" class="error-message bg-danger text-white">
+                                El Nombre es requerido.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tituloitem" class="col-form-label">Titulo:</label>
+                        <input type="text" class="form-control" id="tituloitem" formControlName="titulo" placeholder="" >
+                        <div *ngIf="Titulo?.errors  && Titulo?.touched">
+                            <p *ngIf="Titulo?.hasError('required')" class="error-message bg-danger text-white">
+                                El Titulo es requerido.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tituloitem" class="col-form-label">Texto:</label>
+                        
+                        <angular-editor formControlName="descripcion" [config]="editorConfig"></angular-editor>
+                        <div *ngIf="Descripcion?.errors  && Descripcion?.touched">
+                            <p *ngIf="Descripcion?.hasError('required')" class="error-message bg-danger text-white">
+                                La descripcion es requerida.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                       (click)="saveData()" [disabled]="!formulario.valid" >Guardar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>    

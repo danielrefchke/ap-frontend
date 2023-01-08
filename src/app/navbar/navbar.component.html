@@ -6,16 +6,10 @@
         #YoProgramo
     </div>
     <div class="col col-auto buttons">
-        <a href="">
-            <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+        <a *ngFor="let social of socialmedia" href="{{social.url}}">
+            <i class="{{social.icon}}" aria-hidden="true"></i>
         </a>
-        <a href="">
-            <i class="fa fa-twitter-square" aria-hidden="true"></i>
-        </a>
-        <a href="">
-            <i class="fa fa-github-square" aria-hidden="true"></i>
-        </a>
-        <button class="btn">Acceder</button>
-
+        <button *ngIf="!isLogged" class="btn" data-bs-toggle="modal" data-bs-target="#modallogin">Acceder</button>
+        <button *ngIf="isLogged" class="btn" (click)="logout()">Salir</button>
     </div>
 

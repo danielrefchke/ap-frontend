@@ -7,6 +7,14 @@ import { HeaderComponent } from './header/header.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FootbarComponent } from './footbar/footbar.component';
 import { SeccionesComponent } from './secciones/secciones.component';
+import { LoginComponent } from './login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ItemComponent } from './item/item.component';
+import { ItemEditorComponent } from './item-editor/item-editor.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+import { HttpClientModule } from '@angular/common/http';
+import { NgCircleProgressModule } from 'ng-circle-progress';
+
 
 @NgModule({
   declarations: [
@@ -14,13 +22,47 @@ import { SeccionesComponent } from './secciones/secciones.component';
     HeaderComponent,
     NavbarComponent,
     FootbarComponent,
-    SeccionesComponent
+    SeccionesComponent,
+    LoginComponent,
+    ItemComponent,
+    ItemEditorComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AngularEditorModule,
+    HttpClientModule,
+    NgCircleProgressModule.forRoot({
+      // set defaults here
+      backgroundColor: '#e2cfb8',
+      backgroundStrokeWidth: 0,
+      backgroundPadding: 8,
+      radius: 70,
+      space: -1,
+      maxPercent: 100,
+      units: '',
+      unitsColor: '#483500',
+      outerStrokeWidth: 25,
+      outerStrokeColor: '#312b1f',
+      innerStrokeColor: '#312b1f',
+      innerStrokeWidth: 13,
+      titleColor: '#483500',
+      titleFontSize: '45',
+      subtitleColor: '#483500',
+      animation: false,
+      animateTitle: false,
+      showTitle:false,
+      showSubtitle: false,
+      showUnits:false,
+      showInnerStroke: false,
+      title: '',
+      subtitle: '',
+      responsive:true
+    }),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
