@@ -1,18 +1,17 @@
 import { Component } from '@angular/core';
 import { Autenticated } from '../autenticated';
 import { AuthService } from '../auth.service';
-import { socialmedia } from '../mock-socialmedia';
+import { SincroService } from '../sincro.service';
 
 @Component({
   selector: 'nav',
-  templateUrl: './navbar.component.html'
+  templateUrl: './navbar.component.html',
 })
+export class NavbarComponent extends Autenticated {
+  socialmedia ;
 
-export class NavbarComponent extends Autenticated{
-    socialmedia = socialmedia;
-
-    constructor(auth: AuthService){
-      super(auth);
-    }
-
+  constructor(auth: AuthService, private sincro: SincroService) {
+    super(auth);
+    this.socialmedia = this.sincro.SocialMedia;
+  }
 }

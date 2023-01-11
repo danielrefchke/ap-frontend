@@ -3,6 +3,8 @@ $section-color: #202020;
 $header-footer-color: #312b1f;
 $header-footer-text-color: #e2cfb8;
 $text-color: #fff9f3;
+$drag-text-color: #706a64;
+$font-family:"Oxygen";
 
 @mixin i-icons {
   font-size: xx-large;
@@ -16,7 +18,7 @@ $text-color: #fff9f3;
 }
 
 body {
-  font-family: "Oxygen", sans-serif;
+  font-family: $font-family, sans-serif;
   font-size: larger;
 }
 
@@ -81,11 +83,20 @@ footer {
   }
 }
 
-section {
+@mixin maincomponents {
   background-color: $section-color;
   margin: 0.25rem 0.3rem;
   color: $text-color;
   padding: 1.5rem;
+}
+
+header{
+  @include maincomponents();
+}
+
+section {
+  @include maincomponents();
+  
 }
 
 button {
@@ -101,6 +112,36 @@ a {
   border-radius: 2px;
 }
 
-angular-editor{
-  background-color: white;
+.nav-link{
+  color:$header-footer-color;
+  &:hover{
+    color: $header-footer-text-color;
+  }
+}
+
+
+
+select {
+  font-family: 'FontAwesome',$font-family;
+  .fa{
+    font-family: 'FontAwesome',$font-family;
+  }
+}
+
+option{
+  font-family: 'FontAwesome',$font-family;
+
+  .fa{
+    font-family: 'FontAwesome',$font-family;
+  }
+}
+
+.minibtn{
+  margin-left: 0.75rem;
+  margin-right: 0.75rem;
+}
+
+.edtsocial{
+  margin-top: 0.5rem;
+  text-align: center;
 }

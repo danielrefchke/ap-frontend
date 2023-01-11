@@ -1,6 +1,6 @@
-<section class="header ">
+<header class="header ">
     <div *ngIf="isLogged" class="header-button">
-        <i class="fa fa-pencil-square fa-2x" aria-hidden="true"></i>
+        <i class="fa fa-pencil-square fa-2x" aria-hidden="true" (click)="editThis()" data-bs-toggle="modal" data-bs-target="#modalheader"></i>
     </div>
     <div class="banner">
         <picture>
@@ -17,9 +17,8 @@
             <p class="about">
                 {{header.titulo}}
             </p>
-            <p class="description-info">
-                {{header.descripcion}}
-            </p>
+            <div class="description-info" [innerHTML]="header.descripcion">
+            </div>
         </div>
     </div>
-</section>
+</header>

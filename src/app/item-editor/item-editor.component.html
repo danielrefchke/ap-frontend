@@ -49,9 +49,9 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="tituloitem" class="col-form-label">Texto:</label>
+                        <label for="descripcionitem" class="col-form-label">Texto:</label>
                         
-                        <angular-editor formControlName="descripcion" [config]="editorConfig"></angular-editor>
+                        <angular-editor id="descripcionitem" formControlName="descripcion" [config]="editorConfig"></angular-editor>
                         <div *ngIf="Descripcion?.errors  && Descripcion?.touched">
                             <p *ngIf="Descripcion?.hasError('required')" class="error-message bg-danger text-white">
                                 La descripcion es requerida.

@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { BusItemService } from '../bus-item.service';
 import { Elemento } from '../elemento';
@@ -10,6 +10,9 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
   styleUrls: ['./item-editor.component.sass'],
 })
 export class ItemEditorComponent {
+  
+  
+  
   formulario: FormGroup;
 
   constructor(private bus: BusItemService) {
@@ -24,15 +27,15 @@ export class ItemEditorComponent {
     return this.formulario.get('titulo');
   }
 
-  get Descripcion(){
-    return this.formulario.get('descripcion')
+  get Descripcion() {
+    return this.formulario.get('descripcion');
   }
 
-  get ClassType(){
+  get ClassType() {
     return this.formulario.get('classType');
   }
 
-  get ContenidoDinamico(){
+  get ContenidoDinamico() {
     return this.formulario.get('contDinamico');
   }
 
@@ -40,7 +43,7 @@ export class ItemEditorComponent {
     return this.bus.getElemento();
   }
 
-  get TypeElement(){
+  get TypeElement() {
     return [
       { key: 'element-img', value: 'Imagen' },
       { key: 'element-grap', value: 'Grafico' },
@@ -55,6 +58,7 @@ export class ItemEditorComponent {
     this.elemento.classType = this.formulario.get('classType').value;
     this.elemento.contDinamico = this.formulario.get('contDinamico').value;
 
+    this.bus.change.emit(this.elemento);
   }
 
   editorConfig: AngularEditorConfig = {

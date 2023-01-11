@@ -1,4 +1,4 @@
-<div class="element" *ngFor="let elemento of elementos">
+<div  class="element" *ngFor="let elemento of elementos" cdkDrag [cdkDragDisabled]="!isLogged">
     <div [ngSwitch]="elemento.classType" class="{{elemento.classType}}">
         <picture *ngSwitchCase="'element-img'">
             <img src="../assets/img/{{elemento.contDinamico}}" alt="">
@@ -24,7 +24,9 @@
                    (click)="editThis(elemento)" 
                    data-bs-toggle="modal" data-bs-target="#modalitem"
                    ></i>
-                    <i class="fa fa-trash fa-lg" aria-hidden="true"></i>
+                    <i class="fa fa-trash fa-lg" aria-hidden="true"
+                    (click)="eliminar(elementos,elemento)"
+                    ></i>
                 </span>
             </div>
         </div>

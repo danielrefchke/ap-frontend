@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { socialmedia } from '../mock-socialmedia';
+import { SincroService } from '../sincro.service';
 
 @Component({
   selector: 'footer',
@@ -7,5 +7,9 @@ import { socialmedia } from '../mock-socialmedia';
   styleUrls: ['./footbar.component.sass'],
 })
 export class FootbarComponent {
-  socialmedia = socialmedia;
+  socialmedia;
+
+  constructor(private sincro: SincroService) {
+    this.socialmedia = this.sincro.SocialMedia;
+  }
 }

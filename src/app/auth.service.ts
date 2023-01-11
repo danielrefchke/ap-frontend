@@ -22,7 +22,7 @@ export class AuthService {
     // login hasta que este disponible el servicio backend
     this.user = null;
     this.processStatus=false;    
-    if (user == "u" && password == '12345678') {
+    if (user == "admin" && password == '12345678') {
       this.user = new User(1,user,"token");
       localStorage.setItem('user', JSON.stringify(this.user));
       this.processStatus=true;

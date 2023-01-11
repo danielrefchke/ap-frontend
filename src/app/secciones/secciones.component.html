@@ -1,13 +1,13 @@
 <section *ngFor="let seccion of secciones" class="{{seccion.className}}">
     <div class="section-title row">
         <div class="title-text col">
-            <h3>{{seccion.nombre}}</h3>
+            <h2>{{seccion.nombre}}</h2>
         </div>
         <div *ngIf="isLogged" class="title-button col">
-            <i class="fa fa-plus-square fa-2x" aria-hidden="true"></i>
+            <i class="fa fa-plus-square fa-2x" aria-hidden="true" (click)="agregarItem(seccion)" data-bs-toggle="modal" data-bs-target="#modalitem"></i>
         </div>
     </div>
-    <div class="{{seccion.displayMode}}">
-        <app-item [elementos]="seccion.elementos"></app-item>
+    <div class="{{seccion.displayMode}}" [cdkDropListData]="seccion.elementos" cdkDropList (cdkDropListDropped)="drop($event)">
+        <app-item [elementos]="seccion.elementos" ></app-item>
     </div>
 </section>
