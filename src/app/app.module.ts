@@ -15,6 +15,8 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
 import { HttpClientModule } from '@angular/common/http';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { HeaderEditorComponent } from './header-editor/header-editor.component';
+import { SocialEditorComponent } from './social-editor/social-editor.component';
+import { SeccionEditorComponent } from './seccion-editor/seccion-editor.component';
 
 
 @NgModule({
@@ -28,6 +30,8 @@ import { HeaderEditorComponent } from './header-editor/header-editor.component';
     ItemComponent,
     ItemEditorComponent,
     HeaderEditorComponent,
+    SocialEditorComponent,
+    SeccionEditorComponent,
   ],
   imports: [
     BrowserModule,

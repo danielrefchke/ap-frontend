@@ -102,63 +102,10 @@
                         </div>
                         <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab"
                             tabindex="0">
-                            <div class="row" >
-                                <div class="col">
-                                    <label for="socialicon" class="col-form-label">Icono</label>
-                                    <select class="form-control fa"  id="socialicon" formControlName="socialicon">
-                                        <option class="fa" *ngFor="let s of SocialList" 
-                                          [innerHTML]="s.unicode + '-' + s.nombre"
-                                          [value]="s.cssclas" ></option>
-                                    </select>
-                                </div>
-                                <div class="col-8">
-                                    <label for="socialurl" class="col-form-label">Url</label>
-                                    <input class="form-control" id="socialurl" type="text" formControlName="socialurl" />
-                                </div>
-                                <div class="col-2">
-                                    <label for="" class="col-form-label">Ok</label>
-                                    <button class="btn" (click)="guardarSocial()">
-                                        <i class="fa fa-check fa-lg" aria-hidden="true"></i>
-                                        Aceptar
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div [cdkDropListData]="social" cdkDropList (cdkDropListDropped)="drop($event)">
-                                <div class="row edtsocial" *ngFor="let lnk of social" cdkDrag style="z-index: 999;">
-                                    <div class="col"><i class="fa fa-lg {{lnk.icon}}"></i></div>
-                                    <div class="col">{{lnk.url}}</div>
-                                    <div class="col">
-                                        <i class="minibtn fa fa-pencil fa-lg" aria-hidden="true" (click)="editSocial(lnk)"></i>
-                                        <i class="minibtn fa fa-trash fa-lg" aria-hidden="true" (click)="eliminarSocial(lnk)"></i>
-                                    </div>
-                                </div>
-                            </div>
+                            <app-social-editor></app-social-editor>
                         </div>
                         <div class="tab-pane fade" id="seccion-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
-                            <div class="row">
-                                <div class="col-10">
-                                    <label for="seccion" class="col-form-label">Url</label>
-                                    <input class="form-control" id="seccion" type="text" formControlName="seccion" />
-                                </div>
-                                <div class="col-2">
-                                    <label for="" class="col-form-label">Ok</label>
-                                    <button class="btn" (click)="guardarSeccion()">
-                                        <i class="fa fa-check fa-lg" aria-hidden="true"></i>
-                                        Aceptar
-                                    </button>
-                                </div>
-                            </div>
-                            
-                            <div [cdkDropListData]="secciones" cdkDropList (cdkDropListDropped)="dropSeccion($event)">
-                                <div class="row edtsocial" *ngFor="let sec of secciones" cdkDrag>
-                                    <div class="col">{{sec.nombre}}</div>
-                                    <div class="col">
-                                        <i class="minibtn fa fa-pencil fa-lg" aria-hidden="true" (click)="editarSeccion(sec)"></i>
-                                        <i class="minibtn fa fa-trash fa-lg" aria-hidden="true" (click)="eliminarSeccion(sec)"></i>
-                                    </div>
-                                </div>
-                            </div>
+                            <app-seccion-editor></app-seccion-editor>
                         </div>
                        
                     </div>

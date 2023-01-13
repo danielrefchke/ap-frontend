@@ -1,0 +1,23 @@
+<div class="row" [formGroup]="formulario">
+    <div class="col-10">
+        <label for="seccion" class="col-form-label">Url</label>
+        <input class="form-control" id="seccion" type="text" formControlName="seccion" />
+    </div>
+    <div class="col-2">
+        <label for="" class="col-form-label">Ok</label>
+        <button class="btn" (click)="guardarSeccion()">
+            <i class="fa fa-check fa-lg" aria-hidden="true"></i>
+            Aceptar
+        </button>
+    </div>
+</div>
+
+<div [cdkDropListData]="secciones" cdkDropList (cdkDropListDropped)="dropSeccion($event)">
+    <div class="row edtsocial" *ngFor="let sec of secciones" cdkDrag>
+        <div class="col">{{sec.nombre}}</div>
+        <div class="col">
+            <i class="minibtn fa fa-pencil fa-lg" aria-hidden="true" (click)="editarSeccion(sec)"></i>
+            <i class="minibtn fa fa-trash fa-lg" aria-hidden="true" (click)="eliminarSeccion(sec)"></i>
+        </div>
+    </div>
+</div>
