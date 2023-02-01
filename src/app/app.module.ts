@@ -17,7 +17,10 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 import { HeaderEditorComponent } from './header-editor/header-editor.component';
 import { SocialEditorComponent } from './social-editor/social-editor.component';
 import { SeccionEditorComponent } from './seccion-editor/seccion-editor.component';
-
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { ItemActionComponent } from './item-action/item-action.component';
+import { AgregadorItemSeccionComponent } from './agregador-item-seccion/agregador-item-seccion.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,8 @@ import { SeccionEditorComponent } from './seccion-editor/seccion-editor.componen
     HeaderEditorComponent,
     SocialEditorComponent,
     SeccionEditorComponent,
+    ItemActionComponent,
+    AgregadorItemSeccionComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,14 +65,16 @@ import { SeccionEditorComponent } from './seccion-editor/seccion-editor.componen
       subtitleColor: '#483500',
       animation: false,
       animateTitle: false,
-      showTitle:false,
+      showTitle: false,
       showSubtitle: false,
-      showUnits:false,
+      showUnits: false,
       showInnerStroke: false,
       title: '',
       subtitle: '',
-      responsive:true
+      responsive: true,
     }),
+    ModalModule.forRoot(),
+    TabsModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

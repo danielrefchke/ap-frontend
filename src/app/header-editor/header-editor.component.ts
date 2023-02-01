@@ -1,21 +1,23 @@
-import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { BusHeaderService } from '../bus-header.service';
+import { Component, Input, TemplateRef } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { Header } from '../header';
 import { Socialmedia } from '../socialmedia';
 import { SincroService } from '../sincro.service';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Seccion } from '../seccion';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { AuthService } from '../auth.service';
+import { Autenticated } from '../autenticated';
 
 @Component({
   selector: 'app-header-editor',
   templateUrl: './header-editor.component.html',
   styleUrls: ['./header-editor.component.sass'],
 })
-export class HeaderEditorComponent {
+export class HeaderEditorComponent extends Autenticated {
+  @Input() elemento: Header;
   formulario: FormGroup;
-  elemento: Header;
 
   socialMedia: Socialmedia[];
 
@@ -23,13 +25,46 @@ export class HeaderEditorComponent {
 
   seccion: Seccion;
 
-  constructor(private bus: BusHeaderService, private sincro: SincroService) {
-    this.formulario = this.bus.Formulario;
-    this.socialMedia = this.bus.social;
+  modalRef?: BsModalRef;
+
+  constructor(
+    auth: AuthService,
+    private formBuilder: FormBuilder,
+    private sincro: SincroService,
+    private modalService: BsModalService
+  ) {
+    super(auth);
+    this.formulario = this.formBuilder.group({
+      nombre: ['', [Validators.required]],
+      titulo: ['', [Validators.required]],
+      descripcion: ['', [Validators.required]],
+      imgback: ['', [Validators.required]],
+      imgpersona: ['', [Validators.required]],
+      imgcred: ['', [Validators.required]],
+    });
+    this.socialMedia = this.sincro.SocialMedia;
+  }
+
+  public editHeader(template: TemplateRef<any>) {
+    //this.elemento = e;
+    if (this.elemento) {
+      //console.log(e.titulo);
+
+      this.formulario.controls['nombre'].setValue(this.elemento.nombre);
+      this.formulario.controls['titulo'].setValue(this.elemento.titulo);
+      this.formulario.controls['descripcion'].setValue(
+        this.elemento.descripcion
+      );
+      this.formulario.controls['imgback'].setValue(this.elemento.imgback);
+      this.formulario.controls['imgpersona'].setValue(this.elemento.imgpersona);
+      this.formulario.controls['imgcred'].setValue(this.elemento.imgcred);
+    }
+    this.modalRef = this.modalService.show(template);
+    this.modalRef.setClass('modal-lg');
   }
 
   get header(): Header {
-    return this.bus.header;
+    return this.elemento;
   }
 
   public saveData() {
@@ -39,10 +74,8 @@ export class HeaderEditorComponent {
     this.header.imgback = this.formulario.get('imgback').value;
     this.header.imgcred = this.formulario.get('imgcred').value;
     this.header.imgpersona = this.formulario.get('imgpersona').value;
+    this.modalRef.hide();
   }
-
-  
-  
 
   get Nombre() {
     return this.formulario.get('nombre');

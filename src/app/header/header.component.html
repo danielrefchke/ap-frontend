@@ -1,7 +1,5 @@
 <header class="header ">
-    <div *ngIf="isLogged" class="header-button">
-        <i class="fa fa-pencil-square fa-2x" aria-hidden="true" (click)="editThis()" data-bs-toggle="modal" data-bs-target="#modalheader"></i>
-    </div>
+    <app-header-editor [elemento]="header"></app-header-editor>
     <div class="banner">
         <picture>
             <img class="img-banner" src="../assets/img/{{header.imgback}}" alt="">

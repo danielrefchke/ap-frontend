@@ -1,22 +1,43 @@
-import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, ElementRef, EventEmitter, Input, OnChanges, Output, TemplateRef, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BusItemService } from '../bus-item.service';
 import { Elemento } from '../elemento';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { Autenticated } from '../autenticated';
+import { AuthService } from '../auth.service';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-item-editor',
   templateUrl: './item-editor.component.html',
   styleUrls: ['./item-editor.component.sass'],
 })
-export class ItemEditorComponent {
+export class ItemEditorComponent extends Autenticated {
   
-  
-  
+  @ViewChild('modalitem') reftemplate: TemplateRef<any>;
+
+  modalRef?: BsModalRef;
+
   formulario: FormGroup;
 
-  constructor(private bus: BusItemService) {
-    this.formulario = this.bus.Formulario;
+  constructor(
+    auth: AuthService,
+    private bus: BusItemService,
+    private formBuilder: FormBuilder,
+    private modalService: BsModalService
+  ) {
+    super(auth);
+    this.bus.mensaje.subscribe((mensaje) => {
+      this.editThis(mensaje);
+    });
+
+    this.formulario = this.formBuilder.group({
+      nombre: ['', [Validators.required]],
+      titulo: ['', [Validators.required]],
+      descripcion: ['', [Validators.required]],
+      classType: ['', [Validators.required]],
+      contDinamico: ['', [Validators.required]],
+    });
   }
 
   get Nombre() {
@@ -51,14 +72,48 @@ export class ItemEditorComponent {
     ];
   }
 
+  public editThis(mensaje) {
+    //this.elemento = e;
+    if (this.elemento) {
+      //console.log(e.titulo);
+
+      this.formulario.controls['nombre'].setValue(this.elemento.nombre);
+      this.formulario.controls['titulo'].setValue(this.elemento.titulo);
+      this.formulario.controls['descripcion'].setValue(
+        this.elemento.descripcion
+      );
+      this.formulario.controls['classType'].setValue(this.elemento.classType);
+      this.formulario.controls['contDinamico'].setValue(
+        this.elemento.contDinamico
+      );
+      if (mensaje) {
+        this.formulario.reset();
+      }
+      
+      this.modalRef = this.modalService.show(this.reftemplate, {
+        id: 1,
+        class: 'modal-lg',
+      });
+      //this.modalRef.setClass('modal-lg');
+    }
+    //console.log("edita el objeto "+e);
+  }
+
   public saveData() {
     this.elemento.nombre = this.formulario.get('nombre').value;
     this.elemento.titulo = this.formulario.get('titulo').value;
     this.elemento.descripcion = this.formulario.get('descripcion').value;
     this.elemento.classType = this.formulario.get('classType').value;
     this.elemento.contDinamico = this.formulario.get('contDinamico').value;
-
+    this.modalRef.hide();
     this.bus.change.emit(this.elemento);
+  }
+
+  public eliminar() {
+    if (confirm('Eliminar')) {
+      //let i = this.colleccion.indexOf(this.elemento);
+      //this.colleccion.splice(i, 1);
+    }
   }
 
   editorConfig: AngularEditorConfig = {

@@ -7,7 +7,7 @@ import { Socialmedia } from './socialmedia';
   providedIn: 'root',
 })
 export class BusHeaderService {
-  elemento: Header;
+  /*elemento: Header;
   formulario: FormGroup;
   socialMedia: Socialmedia[];
 
@@ -56,5 +56,5 @@ export class BusHeaderService {
 
   get social(): Socialmedia[] {
     return this.socialMedia;
-  }
+  }*/
 }

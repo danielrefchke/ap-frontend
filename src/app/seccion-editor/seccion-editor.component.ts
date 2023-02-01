@@ -1,7 +1,7 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { BusHeaderService } from '../bus-header.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
+//import { BusHeaderService } from '../bus-header.service';
 import { Seccion } from '../seccion';
 import { SincroService } from '../sincro.service';
 
@@ -16,8 +16,10 @@ export class SeccionEditorComponent {
 
   seccion: Seccion;
 
-  constructor(private bus: BusHeaderService, private sincro: SincroService) {
-    this.formulario = this.bus.Formulario;
+  constructor(private formBuilder: FormBuilder, private sincro: SincroService) {
+    this.formulario = this.formBuilder.group({
+      seccion: ['', []],
+    });
   }
 
   public editarSeccion(s: Seccion) {

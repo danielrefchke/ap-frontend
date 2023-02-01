@@ -18,17 +18,7 @@
             <div class="title-element-text col">
                 <h4>{{elemento.nombre}}</h4>
             </div>
-            <div *ngIf="isLogged" class="title-element-buttons col">
-                <span class="button-group">
-                    <i class="fa fa-pencil fa-lg" aria-hidden="true"
-                   (click)="editThis(elemento)" 
-                   data-bs-toggle="modal" data-bs-target="#modalitem"
-                   ></i>
-                    <i class="fa fa-trash fa-lg" aria-hidden="true"
-                    (click)="eliminar(elementos,elemento)"
-                    ></i>
-                </span>
-            </div>
+            <app-item-action [elemento]="elemento" [colleccion]="elementos"></app-item-action>
         </div>
         <div class="element-description">
             <p class="marcation">{{elemento.titulo}}</p>

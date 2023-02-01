@@ -21,7 +21,7 @@ export class BusSectionService {
   public additem(s: Seccion) {
     this.seccion = s;
 
-    this.itemSevice.editThis(new Elemento(0, '', '', '', '', ''));
-    this.itemSevice.Formulario.reset();
+    this.itemSevice.editThis(new Elemento(0, '', '', '', '', ''),true);
+    //this.itemSevice.Formulario.reset();
   }
 }

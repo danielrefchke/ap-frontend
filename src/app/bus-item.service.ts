@@ -2,6 +2,7 @@ import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Elemento } from './elemento';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Seccion } from './seccion';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -9,22 +10,27 @@ import { Seccion } from './seccion';
 export class BusItemService {
   elemento: Elemento;
   seccion: Seccion;
-  formulario: FormGroup;
+  //formulario: FormGroup;
   @Output() change: EventEmitter<any> = new EventEmitter();
+  private mensajero = new Subject<any>();
 
-  constructor(private formBuilder: FormBuilder) {
-    this.formulario = this.formBuilder.group({
+  mensaje = this.mensajero.asObservable();
+
+  constructor() /*private formBuilder: FormBuilder*/ {
+    /*this.formulario = this.formBuilder.group({
       nombre: ['', [Validators.required]],
       titulo: ['', [Validators.required]],
       descripcion: ['', [Validators.required]],
       classType: ['', [Validators.required]],
       contDinamico: ['', [Validators.required]],
-    });
+    });*/
   }
 
-  public editThis(e: Elemento) {
+  public editThis(e: Elemento,reset=false) {
     this.elemento = e;
-    if (this.elemento) {
+    
+    this.mensajero.next(reset);
+    /*if (this.elemento) {
       //console.log(e.titulo);
 
       this.formulario.controls['nombre'].setValue(e.nombre);
@@ -35,13 +41,14 @@ export class BusItemService {
       
     }
     //console.log("edita el objeto "+e);
+    */
   }
 
   public getElemento(): Elemento {
     return this.elemento;
   }
 
-  get Formulario(): FormGroup {
+  /*get Formulario(): FormGroup {
     return this.formulario;
-  }
+  }*/
 }

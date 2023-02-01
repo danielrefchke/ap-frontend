@@ -1,16 +1,15 @@
-<div class="modal fade modal-lg" id="modalitem" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <form id="itemform" [formGroup]="formulario" onsubmit="return false;">
-        <div class="modal-dialog">
-            <div class="modal-content">
+<ng-template #modalitem >
+    <form id="itemform" tabindex="-1" [formGroup]="formulario" onsubmit="return false;">
+            <div class="modal-content" tabindex="-1">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5">Editar Elemento</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" (click)="modalRef.hide()" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" >
                     <div class="row">
                         <div class="col">
                             <label for="tipoelemento" class="col-form-label">Tipo:</label>
-                            <select class="form-control" id="tipoelemento"     formControlName="classType">
+                            <select  class="form-select" id="tipoelemento"     formControlName="classType">
                                 <option *ngFor="let opt of TypeElement" [value]="opt.key">
                                     {{opt.value}}</option>
                             </select>
@@ -61,11 +60,9 @@
                 </div>
                 <div class="modal-footer">
                     
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-                       (click)="saveData()" [disabled]="!formulario.valid" >Guardar</button>
+                    <button type="button" class="btn btn-secondary" (click)="modalRef.hide()">Cancelar</button>
+                    <button type="button" class="btn btn-primary"   (click)="saveData()" [disabled]="!formulario.valid" >Guardar</button>
                 </div>
             </div>
-        </div>
     </form>
-</div>    
+</ng-template>    

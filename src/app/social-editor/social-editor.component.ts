@@ -1,7 +1,6 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { BusHeaderService } from '../bus-header.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { SincroService } from '../sincro.service';
 import { Socialmedia } from '../socialmedia';
 
@@ -11,28 +10,31 @@ import { Socialmedia } from '../socialmedia';
   styleUrls: ['./social-editor.component.sass'],
 })
 export class SocialEditorComponent {
-  formulario: FormGroup;
+  formulariosocial: FormGroup;
 
   socialMedia: Socialmedia[];
 
   esocial: Socialmedia;
 
-  constructor(private bus: BusHeaderService, private sincro: SincroService) {
-    this.formulario = this.bus.Formulario;
-    this.socialMedia = this.bus.social;
+  constructor(private formBuilder: FormBuilder, private sincro: SincroService) {
+    this.formulariosocial = this.formBuilder.group({
+      socialicon: ['', []],
+      socialurl: ['', []],
+    });
+    this.socialMedia = this.sincro.SocialMedia;
   }
 
   public editSocial(s: Socialmedia) {
     this.esocial = s;
 
-    this.formulario.get('socialicon').setValue(s.icon);
-    this.formulario.get('socialurl').setValue(s.url);
+    this.formulariosocial.get('socialicon').setValue(s.icon);
+    this.formulariosocial.get('socialurl').setValue(s.url);
   }
 
   public guardarSocial() {
     if (
-      this.formulario.get('socialicon').value == '' ||
-      this.formulario.get('socialurl').value == ''
+      this.formulariosocial.get('socialicon').value == '' ||
+      this.formulariosocial.get('socialurl').value == ''
     ) {
       return;
     }
@@ -41,11 +43,11 @@ export class SocialEditorComponent {
       this.esocial = new Socialmedia(0, '', '');
       this.sincro.SocialMedia.push(this.esocial);
     }
-    this.esocial.icon = this.formulario.get('socialicon').value;
-    this.esocial.url = this.formulario.get('socialurl').value;
+    this.esocial.icon = this.formulariosocial.get('socialicon').value;
+    this.esocial.url = this.formulariosocial.get('socialurl').value;
     this.esocial = null;
-    this.formulario.get('socialicon').setValue('');
-    this.formulario.get('socialurl').setValue('');
+    this.formulariosocial.get('socialicon').setValue('');
+    this.formulariosocial.get('socialurl').setValue('');
   }
 
   public eliminarSocial(s: Socialmedia) {
@@ -60,11 +62,11 @@ export class SocialEditorComponent {
   }
 
   get socialIcon() {
-    return this.formulario.get('socialicon');
+    return this.formulariosocial.get('socialicon');
   }
 
   get socialUrl() {
-    return this.formulario.get('socialurl');
+    return this.formulariosocial.get('socialurl');
   }
 
   get SocialList(): any[] {

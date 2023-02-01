@@ -3,9 +3,7 @@
         <div class="title-text col">
             <h2>{{seccion.nombre}}</h2>
         </div>
-        <div *ngIf="isLogged" class="title-button col">
-            <i class="fa fa-plus-square fa-2x" aria-hidden="true" (click)="agregarItem(seccion)" data-bs-toggle="modal" data-bs-target="#modalitem"></i>
-        </div>
+        <app-agregador-item-seccion [seccion]="seccion"></app-agregador-item-seccion>
     </div>
     <div class="{{seccion.displayMode}}" [cdkDropListData]="seccion.elementos" cdkDropList (cdkDropListDropped)="drop($event)">
         <app-item [elementos]="seccion.elementos" ></app-item>

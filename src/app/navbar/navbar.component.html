@@ -8,7 +8,6 @@
         <a *ngFor="let social of socialmedia" href="{{social.url}}">
             <i class="fa {{social.icon}}" aria-hidden="true"></i>
         </a>
-        <button *ngIf="!isLogged" class="btn" data-bs-toggle="modal" data-bs-target="#modallogin">Acceder</button>
-        <button *ngIf="isLogged" class="btn" (click)="logout()">Salir</button>
+        <app-login></app-login>
     </div>
 
