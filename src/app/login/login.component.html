@@ -8,6 +8,10 @@
             <button type="button" class="btn-close" (click)="modalRef.hide()" aria-label="Close"></button>
         </div>
         <div *ngIf="!IsLoged" class="modal-body">
+            <div>
+                <ngx-spinner name="spinnerLogin" bdColor="rgba(112,106,100,0.6)" size="medium" color="#312b1f"
+                    type="square-jelly-box" [fullScreen]="false"></ngx-spinner>
+            </div>
             <div class="mb-3 form-floating ">
                 <input type="text" class="form-control" id="user" formControlName="user" placeholder="">
                 <label for="user" class="col-form-label">Usuario:</label>
@@ -34,6 +38,7 @@
             <div class="error-message bg-danger text-white" *ngIf="errorLog">
                 Error de acceso
             </div>
+            
             <button *ngIf="!IsLoged" type="cancel" class="btn btn-secondary" (click)="modalRef.hide()">Cancelar</button>
             <button *ngIf="!IsLoged" type="submit" class="btn btn-primary" data-dismiss="modal"
                 (click)="onEnviar($event)">Acceder</button>

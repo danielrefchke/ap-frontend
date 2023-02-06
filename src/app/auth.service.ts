@@ -1,56 +1,69 @@
 import { Injectable } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { User } from './user';
 
 @Injectable({
   providedIn: 'root',
 })
-
 export class AuthService {
   api = '';
 
   token;
 
-  user:User
+  user: User;
 
-  processStatus:boolean
+  processStatus: boolean;
 
-  constructor() {
-    this.processStatus=true;
+  constructor(private spinner: NgxSpinnerService) {
+    this.processStatus = true;
   }
 
-  login(user:string,password:string){
+  login(user: string, password: string) {
     // login hasta que este disponible el servicio backend
     this.user = null;
-    this.processStatus=false;    
-    if (user == "admin" && password == '12345678') {
-      this.user = new User(1,user,"token");
+
+    /*if (user == 'admin' && password == '12345678') {
+      this.user = new User(1, user, 'token');
       localStorage.setItem('user', JSON.stringify(this.user));
-      this.processStatus=true;
-    }
+      this.processStatus = true;
+    }*/
+    let self = this;
+    this.processStatus = true;
+    this.spinner.show('spinnerLogin');
+    setTimeout(() => {
+      if (user == 'admin' && password == '12345678') {
+        self.user = new User(1, user, 'token');
+        localStorage.setItem('user', JSON.stringify(this.user));
+        self.processStatus = true;
+      }else{
+        this.processStatus = false;
+      }
+      self.spinner.hide('spinnerLogin');
+    }, 3000);
+
   }
 
-  logout(){
+  logout() {
     localStorage.removeItem('user');
     this.user = null;
   }
 
-  get status():boolean{
+  get status(): boolean {
     return this.processStatus;
   }
 
-  isLogged():boolean{
+  isLogged(): boolean {
     if (this.user) {
       return true;
-    }else{
+    } else {
       let usr = localStorage.getItem('user');
       if (usr) {
         let t = JSON.parse(usr);
-        this.user = new User(t.id,t.nombre,t.token);
-        
+        this.user = new User(t.id, t.nombre, t.token);
+
         return true;
       }
     }
     return false;
   }
-
 }

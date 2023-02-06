@@ -11,13 +11,15 @@ export class HeaderComponent  {
   header:Header;
 
   constructor(
-    //auth: AuthService,
-    //private bus: BusHeaderService,
     private sincro: SincroService
   ) {
-    //super(auth);
-    this.header = sincro.Header;
-  }
+    
+    sincro.loaded.subscribe((data) => {
+      this.header = sincro.Header;
+    });
+
+}
+
 
   public editThis() {
     //this.bus.editHeader(this.header);

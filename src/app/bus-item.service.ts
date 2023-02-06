@@ -16,39 +16,17 @@ export class BusItemService {
 
   mensaje = this.mensajero.asObservable();
 
-  constructor() /*private formBuilder: FormBuilder*/ {
-    /*this.formulario = this.formBuilder.group({
-      nombre: ['', [Validators.required]],
-      titulo: ['', [Validators.required]],
-      descripcion: ['', [Validators.required]],
-      classType: ['', [Validators.required]],
-      contDinamico: ['', [Validators.required]],
-    });*/
-  }
+  constructor() {  }
 
   public editThis(e: Elemento,reset=false) {
     this.elemento = e;
     
     this.mensajero.next(reset);
-    /*if (this.elemento) {
-      //console.log(e.titulo);
-
-      this.formulario.controls['nombre'].setValue(e.nombre);
-      this.formulario.controls['titulo'].setValue(e.titulo);
-      this.formulario.controls['descripcion'].setValue(e.descripcion);
-      this.formulario.controls['classType'].setValue(e.classType);
-      this.formulario.controls['contDinamico'].setValue(e.contDinamico);
-      
-    }
-    //console.log("edita el objeto "+e);
-    */
+    
   }
 
   public getElemento(): Elemento {
     return this.elemento;
   }
 
-  /*get Formulario(): FormGroup {
-    return this.formulario;
-  }*/
 }

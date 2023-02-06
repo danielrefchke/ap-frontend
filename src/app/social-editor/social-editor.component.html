@@ -1,10 +1,7 @@
 <div class="row" [formGroup]="formulariosocial" >
     <div class="col" role="dialog" tabindex="-1">
         <label for="socialicon" class="col-form-label">Icono</label>
-        <select class="form-select fa" id="socialicon" formControlName="socialicon">
-            <option class="fa" *ngFor="let s of SocialList" [innerHTML]="s.unicode + '-' + s.nombre"
-                [value]="s.cssclas"></option>
-        </select>
+        <app-icon-picker id="socialicon" formControlName="socialicon"></app-icon-picker>
     </div>
     <div class="col-8">
         <label for="socialurl" class="col-form-label">Url</label>

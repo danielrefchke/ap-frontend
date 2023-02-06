@@ -4,6 +4,7 @@ import { AuthService } from '../auth.service';
 import { BusItemService } from '../bus-item.service';
 import { Elemento } from '../elemento';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { SincroService } from '../sincro.service';
 
 @Component({
   selector: 'app-item-action',
@@ -15,13 +16,25 @@ export class ItemActionComponent extends Autenticated {
   @Input() colleccion: Elemento[];
 
   modalRef?: BsModalRef;
+  
+  private tmp: Elemento;
 
   constructor(
     auth: AuthService,
     private bus: BusItemService,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private sincro: SincroService
   ) {
     super(auth);
+
+    this.sincro.saved.subscribe((mensaje) => {
+      if (this.tmp) {
+        let i = this.colleccion.indexOf(this.elemento);
+        this.colleccion.splice(i, 1);
+        this.modalRef.hide();
+        this.tmp = null;
+      }
+    });
   }
 
   public editThis(e: Elemento) {
@@ -32,9 +45,8 @@ export class ItemActionComponent extends Autenticated {
     this.modalRef = this.modalService.show(template);
   }
 
-  public confirmaEliminar(){
-     let i = this.colleccion.indexOf(this.elemento);
-      this.colleccion.splice(i, 1);
-      this.modalRef.hide();
+  public confirmaEliminar() {
+    this.tmp = this.elemento;
+    this.sincro.sincr(this.elemento);
   }
 }

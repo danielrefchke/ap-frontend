@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, OnChanges, Output, TemplateRef, ViewChild } from '@angular/core';
+import { Component, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BusItemService } from '../bus-item.service';
 import { Elemento } from '../elemento';
@@ -6,14 +6,15 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { Autenticated } from '../autenticated';
 import { AuthService } from '../auth.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { SincroService } from '../sincro.service';
 
 @Component({
   selector: 'app-item-editor',
   templateUrl: './item-editor.component.html',
   styleUrls: ['./item-editor.component.sass'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class ItemEditorComponent extends Autenticated {
-  
   @ViewChild('modalitem') reftemplate: TemplateRef<any>;
 
   modalRef?: BsModalRef;
@@ -24,18 +25,23 @@ export class ItemEditorComponent extends Autenticated {
     auth: AuthService,
     private bus: BusItemService,
     private formBuilder: FormBuilder,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private sinc: SincroService
   ) {
     super(auth);
     this.bus.mensaje.subscribe((mensaje) => {
       this.editThis(mensaje);
     });
 
+    this.sinc.saved.subscribe((mensaje) => {
+      this.modalRef.hide();
+    });
+
     this.formulario = this.formBuilder.group({
       nombre: ['', [Validators.required]],
       titulo: ['', [Validators.required]],
       descripcion: ['', [Validators.required]],
-      classType: ['', [Validators.required]],
+      classType: [null, [Validators.required]],
       contDinamico: ['', [Validators.required]],
     });
   }
@@ -66,9 +72,9 @@ export class ItemEditorComponent extends Autenticated {
 
   get TypeElement() {
     return [
-      { key: 'element-img', value: 'Imagen' },
       { key: 'element-grap', value: 'Grafico' },
       { key: 'element-languaje', value: 'Texto' },
+      { key: 'element-img', value: 'Imagen' },
     ];
   }
 
@@ -89,7 +95,7 @@ export class ItemEditorComponent extends Autenticated {
       if (mensaje) {
         this.formulario.reset();
       }
-      
+
       this.modalRef = this.modalService.show(this.reftemplate, {
         id: 1,
         class: 'modal-lg',
@@ -105,7 +111,8 @@ export class ItemEditorComponent extends Autenticated {
     this.elemento.descripcion = this.formulario.get('descripcion').value;
     this.elemento.classType = this.formulario.get('classType').value;
     this.elemento.contDinamico = this.formulario.get('contDinamico').value;
-    this.modalRef.hide();
+    this.sinc.sincr(this.elemento);
+
     this.bus.change.emit(this.elemento);
   }
 

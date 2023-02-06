@@ -12,21 +12,42 @@ import { SincroService } from '../sincro.service';
 })
 export class SeccionesComponent extends Autenticated {
   secciones;
+
+  private evt:CdkDragDrop<Elemento[]>;
+  
   constructor(
     auth: AuthService,
     private sincro: SincroService,
   ) {
     super(auth);
+    sincro.loaded.subscribe((data) => {
+      this.secciones = this.sincro.Secciones;
+    });
+
+    
+    this.sincro.error.subscribe((data)=>{
+      if (this.evt) {
+        moveItemInArray(
+          this.evt.container.data,
+          this.evt.currentIndex,
+          this.evt.previousIndex
+        );
+      }
+      this.evt = null;
+    });
+    
+
     this.secciones = this.sincro.Secciones;
   }
 
   drop(event: CdkDragDrop<Elemento[]>) {
-    console.log(event);
-
+    //console.log(event);
+    this.evt = event;
+    this.sincro.sincr(event.container.data[event.currentIndex], 'spinnerDrop');
     moveItemInArray(
-      event.container.data,
-      event.previousIndex,
-      event.currentIndex
+      this.evt.container.data,
+      this.evt.previousIndex,
+      this.evt.currentIndex
     );
   }
 }

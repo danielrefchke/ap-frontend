@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { AppRoutingModule } from './app-routing.module';
@@ -21,6 +21,15 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ItemActionComponent } from './item-action/item-action.component';
 import { AgregadorItemSeccionComponent } from './agregador-item-seccion/agregador-item-seccion.component';
+import {
+  ToastrModule,
+} from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { ImagePickerComponent } from './image-picker/image-picker.component';
+import { IconPickerComponent } from './icon-picker/icon-picker.component';
+import { ItemTipoEditorComponent } from './item-tipo-editor/item-tipo-editor.component';
+import { GraphItemEditorComponent } from './graph-item-editor/graph-item-editor.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +46,10 @@ import { AgregadorItemSeccionComponent } from './agregador-item-seccion/agregado
     SeccionEditorComponent,
     ItemActionComponent,
     AgregadorItemSeccionComponent,
+    ImagePickerComponent,
+    IconPickerComponent,
+    ItemTipoEditorComponent,
+    GraphItemEditorComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,8 +88,15 @@ import { AgregadorItemSeccionComponent } from './agregador-item-seccion/agregado
     }),
     ModalModule.forRoot(),
     TabsModule.forRoot(),
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+      progressBar:true,
+    }),
+    BrowserAnimationsModule,
+    NgxSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

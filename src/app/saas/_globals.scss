@@ -120,21 +120,27 @@ a {
 }
 
 
-
+/*
 select {
-  font-family: 'FontAwesome',$font-family;
+  //font-family: 'FontAwesome',$font-family;
+ 
   .fa{
     font-family: 'FontAwesome',$font-family;
+  }
+
+  .form-select{
+    color:red;
   }
 }
 
 option{
-  font-family: 'FontAwesome',$font-family;
+  //font-family: 'FontAwesome',$font-family;
 
   .fa{
     font-family: 'FontAwesome',$font-family;
   }
 }
+*/
 
 .minibtn{
   margin-left: 0.75rem;

@@ -1,4 +1,4 @@
-import { Component, Input, TemplateRef } from '@angular/core';
+import { Component, Input, TemplateRef, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { Header } from '../header';
@@ -14,6 +14,7 @@ import { Autenticated } from '../autenticated';
   selector: 'app-header-editor',
   templateUrl: './header-editor.component.html',
   styleUrls: ['./header-editor.component.sass'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class HeaderEditorComponent extends Autenticated {
   @Input() elemento: Header;
@@ -43,6 +44,10 @@ export class HeaderEditorComponent extends Autenticated {
       imgcred: ['', [Validators.required]],
     });
     this.socialMedia = this.sincro.SocialMedia;
+
+    this.sincro.saved.subscribe((mensaje) => {
+      this.modalRef.hide();
+    });
   }
 
   public editHeader(template: TemplateRef<any>) {
@@ -74,7 +79,8 @@ export class HeaderEditorComponent extends Autenticated {
     this.header.imgback = this.formulario.get('imgback').value;
     this.header.imgcred = this.formulario.get('imgcred').value;
     this.header.imgpersona = this.formulario.get('imgpersona').value;
-    this.modalRef.hide();
+    //this.modalRef.hide();
+    this.sincro.sincr(this.header);
   }
 
   get Nombre() {

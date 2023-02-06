@@ -1,33 +1,13 @@
 <ng-template #modalitem >
-    <form id="itemform" tabindex="-1" [formGroup]="formulario" onsubmit="return false;">
-            <div class="modal-content" tabindex="-1">
+    <form id="itemform"  [formGroup]="formulario" onsubmit="return false;">
+            <div class="modal-content" >
                 <div class="modal-header">
                     <h1 class="modal-title fs-5">Editar Elemento</h1>
                     <button type="button" class="btn-close" (click)="modalRef.hide()" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" >
                     <div class="row">
-                        <div class="col">
-                            <label for="tipoelemento" class="col-form-label">Tipo:</label>
-                            <select  class="form-select" id="tipoelemento"     formControlName="classType">
-                                <option *ngFor="let opt of TypeElement" [value]="opt.key">
-                                    {{opt.value}}</option>
-                            </select>
-                            <div *ngIf="ClassType?.errors  && ClassType?.touched">
-                                <p *ngIf="ClassType?.hasError('required')" class="error-message bg-danger text-white">
-                                    El tipo de elemento es requerido.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <label for="contDinamico" class="col-form-label">Valor:</label>
-                            <input type="text" class="form-control" id="contDinamico" formControlName="contDinamico" placeholder="">
-                            <div *ngIf="ContenidoDinamico?.errors  && ContenidoDinamico?.touched">
-                                <p *ngIf="ContenidoDinamico?.hasError('required')" class="error-message bg-danger text-white">
-                                    El valor del tipo es requerido.
-                                </p>
-                            </div>
-                        </div>
+                        <app-item-tipo-editor [formGroup]="formulario" name="classType" id="classType" formControlName="classType"></app-item-tipo-editor>
                     </div>
                     <div class="mb-3">
                         <label for="nombreitem" class="col-form-label">Nombre:</label>
@@ -56,6 +36,10 @@
                                 La descripcion es requerida.
                             </p>
                         </div>
+                    </div>
+                    <div>
+                        <ngx-spinner name="spinnerEdit" bdColor="rgba(112,106,100,0.6)" size="medium" color="#312b1f"
+                            type="square-jelly-box" [fullScreen]="false"></ngx-spinner>
                     </div>
                 </div>
                 <div class="modal-footer">

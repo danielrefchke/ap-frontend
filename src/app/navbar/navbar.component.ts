@@ -12,6 +12,9 @@ export class NavbarComponent extends Autenticated {
 
   constructor(auth: AuthService, private sincro: SincroService) {
     super(auth);
+    sincro.loaded.subscribe((data) => {
+      this.socialmedia = this.sincro.SocialMedia;
+    });
     this.socialmedia = this.sincro.SocialMedia;
   }
 }
