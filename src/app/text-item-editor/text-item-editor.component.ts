@@ -1,41 +1,38 @@
 import { Component, forwardRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
-
 @Component({
-  selector: 'app-graph-item-editor',
-  templateUrl: './graph-item-editor.component.html',
-  styleUrls: ['./graph-item-editor.component.scss'],
+  selector: 'app-text-item-editor',
+  templateUrl: './text-item-editor.component.html',
+  styleUrls: ['./text-item-editor.component.sass'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => GraphItemEditorComponent),
+      useExisting: forwardRef(() => TextItemEditorComponent),
       multi: true,
     },
   ],
 })
-export class GraphItemEditorComponent implements ControlValueAccessor {
-  valor:any;
+export class TextItemEditorComponent implements ControlValueAccessor {
+  valor: string;
 
   public onChange: any = (_: any) => {};
   public onTouch: any = () => {};
 
-
-  constructor(){
-    this.valor=0;
+  constructor() {
+    this.valor = '';
   }
 
-  modificado(obj: any): void{
+  modificado(obj: any): void {
     //console.log(obj);
-    
     this.valor = obj.target.value;
     this.onTouch();
-    this.onChange(obj.target.value);
-    
-  };
+    this.onChange(this.valor);
+    console.log(this.valor);
+  }
 
-  writeValue(obj: any): void {
-    this.valor = isNaN(obj)? 0:obj;
+  writeValue(obj: string): void {
+    this.valor = obj?.length > 2 ? obj.substring(0, 2) : obj;
     this.onChange(obj);
   }
 

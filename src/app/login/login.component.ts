@@ -27,6 +27,10 @@ export class LoginComponent extends Autenticated implements OnInit {
       user: ['', [Validators.required]],
     });
 
+    this.auth.logged.subscribe((mensaje) => {
+      this.modalRef?.hide();
+    });
+
     this.logged = false;
   }
 

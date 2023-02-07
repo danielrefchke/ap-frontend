@@ -34,7 +34,7 @@ export class ItemEditorComponent extends Autenticated {
     });
 
     this.sinc.saved.subscribe((mensaje) => {
-      this.modalRef.hide();
+      this.modalRef?.hide();
     });
 
     this.formulario = this.formBuilder.group({

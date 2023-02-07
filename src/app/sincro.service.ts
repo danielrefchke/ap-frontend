@@ -111,6 +111,16 @@ export class SincroService {
       cssclas: 'fa-linkedin-square',
       unicode: '&#xf0e1;',
     });
+    arr.push({
+      nombre: 'Bitbucket',
+      cssclas: 'fa-bitbucket-square',
+      unicode: '&#xf0e1;',
+    });
+    arr.push({
+      nombre: 'Gitlab',
+      cssclas: 'fa-gitlab',
+      unicode: '&#xf0e1;',
+    });
     return arr;
   }
 

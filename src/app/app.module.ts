@@ -30,6 +30,7 @@ import { ImagePickerComponent } from './image-picker/image-picker.component';
 import { IconPickerComponent } from './icon-picker/icon-picker.component';
 import { ItemTipoEditorComponent } from './item-tipo-editor/item-tipo-editor.component';
 import { GraphItemEditorComponent } from './graph-item-editor/graph-item-editor.component';
+import { TextItemEditorComponent } from './text-item-editor/text-item-editor.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { GraphItemEditorComponent } from './graph-item-editor/graph-item-editor.
     IconPickerComponent,
     ItemTipoEditorComponent,
     GraphItemEditorComponent,
+    TextItemEditorComponent,
   ],
   imports: [
     BrowserModule,

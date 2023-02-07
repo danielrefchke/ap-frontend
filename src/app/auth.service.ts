@@ -1,11 +1,17 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
+import { Subject } from 'rxjs';
 import { User } from './user';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  @Output() logged: EventEmitter<any> = new EventEmitter();
+  private loggedSubject = new Subject<any>();
+  mensajeLogged = this.loggedSubject.asObservable();
+
   api = '';
 
   token;
@@ -14,7 +20,10 @@ export class AuthService {
 
   processStatus: boolean;
 
-  constructor(private spinner: NgxSpinnerService) {
+  constructor(
+    private spinner: NgxSpinnerService,
+    private toastr: ToastrService
+  ) {
     this.processStatus = true;
   }
 
@@ -35,12 +44,13 @@ export class AuthService {
         self.user = new User(1, user, 'token');
         localStorage.setItem('user', JSON.stringify(this.user));
         self.processStatus = true;
-      }else{
+        this.logged.emit(true);
+        this.toastr.success(`Bienvenido ${user}`, 'Acceso exitoso');
+      } else {
         this.processStatus = false;
       }
       self.spinner.hide('spinnerLogin');
     }, 3000);
-
   }
 
   logout() {

@@ -46,7 +46,7 @@ export class HeaderEditorComponent extends Autenticated {
     this.socialMedia = this.sincro.SocialMedia;
 
     this.sincro.saved.subscribe((mensaje) => {
-      this.modalRef.hide();
+      this.modalRef?.hide();
     });
   }
 

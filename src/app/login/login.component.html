@@ -42,10 +42,6 @@
             <button *ngIf="!IsLoged" type="cancel" class="btn btn-secondary" (click)="modalRef.hide()">Cancelar</button>
             <button *ngIf="!IsLoged" type="submit" class="btn btn-primary" data-dismiss="modal"
                 (click)="onEnviar($event)">Acceder</button>
-            <div class="success-message bg-success text-white" *ngIf="IsLoged">
-                Acceso exitoso
-            </div>
-            <button *ngIf="IsLoged" type="cancel" class="btn btn-secondary" (click)="modalRef.hide()">Cerrar</button>
         </div>
     </form>
 </ng-template>

@@ -1,7 +1,7 @@
 .icon-picker-list {
+  max-height: 10em;
+  min-height: 10em;
   max-width: 15em;
-  min-width: 15em;
-  max-height: 25em;
   overflow: scroll;
   
 
@@ -15,9 +15,18 @@
   border-style: solid;
   display: flex;
   gap: 2px;
+  flex-wrap: wrap;
   
   button{
-    padding: 2px;
+    padding: 4px;
     margin: 1px;
+    min-width: 4em;
+    min-height: 4em;
+
+
+    i{
+      clear: both;
+      display: block;
+    }
   }
 }
