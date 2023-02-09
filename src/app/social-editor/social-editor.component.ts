@@ -40,7 +40,9 @@ export class SocialEditorComponent {
     }
 
     if (!this.esocial) {
-      this.esocial = new Socialmedia(0, '', '');
+      this.esocial = new Socialmedia(
+        { id: 0, icon: '', url: '' }
+      );
       this.sincro.SocialMedia.push(this.esocial);
     }
     this.esocial.icon = this.formulariosocial.get('socialicon').value;
