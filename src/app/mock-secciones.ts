@@ -1,66 +1,183 @@
 import { Seccion } from './seccion';
 import { Elemento } from './elemento';
+import { Collection } from './collection';
 
 const lorem = ` Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste ad similique ratione dolores aliquid fugit asperiores possimus. Atque mollitia repudiandae velit. Amet aliquam error suscipit maxime ea similique voluptatum minima.Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste ad similique ratione dolores aliquid fugit asperiores possimus. Atque mollitia repudiandae velit. Amet aliquam error suscipit maxime ea similique voluptatum minima. `;
 
-const elem1: Elemento[] = [
-  new Elemento(1, 'Elemento1', 'algo', lorem, 'element-languaje', 'Es'),
-  new Elemento(2, 'Elemento2', 'algo', lorem, 'element-languaje', 'Es'),
-  new Elemento(
-    3,
-    'Elemento3',
-    'algo',
-    lorem,
-    'element-img',
-    'crypto-trading.png'
-  ),
-  new Elemento(4, 'Elemento4', 'algo', lorem, 'element-grap', '45'),
-];
+const elem1: Collection<Elemento> = new Collection<Elemento>(Elemento);
+elem1.parse(
+  [{
+    id: 1,
+    nombre: 'Elemento1',
+    titulo: 'algo',
+    descripcion: lorem,
+    classType: 'element-languaje',
+    contDinamico: 'Es',
+  },
 
-const elem2: Elemento[] = [
-  new Elemento(5, 'Elemento1', 'algo', lorem, 'element-languaje', 'Es'),
-  new Elemento(6, 'Elemento2', 'algo', lorem, 'element-languaje', 'Es'),
-  new Elemento(
-    7,
-    'Elemento3',
-    'algo',
-    lorem,
-    'element-img',
-    'crypto-trading.png'
-  ),
-  new Elemento(8, 'Elemento4', 'algo', lorem, 'element-grap', '45'),
-];
+  {
+    id: 2,
+    nombre: 'Elemento2',
+    titulo: 'algo',
+    descripcion: lorem,
+    classType: 'element-languaje',
+    contDinamico: 'Es',
+  },
+  {
+    id: 3,
+    nombre: 'Elemento3',
+    titulo: 'algo',
+    descripcion: lorem,
+    classType: 'element-img',
+    contDinamico: 'crypto-trading.png',
+  },
+  {
+    id: 4,
+    nombre: 'Elemento4',
+    titulo: 'algo',
+    descripcion: lorem,
+    classType: 'element-grap',
+    contDinamico: '45',
+  },
+]);
 
-const elem3: Elemento[] = [
-  new Elemento(9, 'Elemento1', 'algo', lorem, 'element-grap', '80'),
-  new Elemento(10, 'Elemento2', 'algo', lorem, 'element-grap', '60'),
-  new Elemento(11, 'Elemento3', 'algo', lorem, 'element-grap', '50'),
-  new Elemento(12, 'Elemento4', 'algo', lorem, 'element-grap', '45'),
-];
+const elem2: Collection<Elemento> = new Collection<Elemento>(Elemento);
+elem2.parse([
+  {
+    id: 5,
+    nombre: 'Elemento5',
+    titulo: 'algo',
+    descripcion: lorem,
+    classType: 'element-languaje',
+    contDinamico: 'Es',
+  },
 
-const elem4: Elemento[] = [
-  new Elemento(13, 'Elemento1', 'algo', lorem, 'element-languaje', 'Es'),
-  new Elemento(14, 'Elemento2', 'algo', lorem, 'element-languaje', 'Es'),
-];
+  {
+    id: 6,
+    nombre: 'Elemento6',
+    titulo: 'algo',
+    descripcion: lorem,
+    classType: 'element-languaje',
+    contDinamico: 'Es',
+  },
+  {
+    id: 7,
+    nombre: 'Elemento7',
+    titulo: 'algo',
+    descripcion: lorem,
+    classType: 'element-img',
+    contDinamico: 'crypto-trading.png',
+  },
+  {
+    id: 8,
+    nombre: 'Elemento8',
+    titulo: 'algo',
+    descripcion: lorem,
+    classType: 'element-grap',
+    contDinamico: '45',
+  },
+]);
 
-const elem5: Elemento[] = [
-  new Elemento(17, 'Elemento1', 'algo', lorem, 'element-languaje', 'Es'),
-  new Elemento(18, 'Elemento2', 'algo', lorem, 'element-languaje', 'Es'),
-  new Elemento(
-    19,
-    'Elemento3',
-    'algo',
-    lorem,
-    'element-img',
-    'crypto-trading.png'
-  ),
-  new Elemento(20, 'Elemento4', 'algo', lorem, 'element-grap', '45'),
-];
+const elem3: Collection<Elemento> = new Collection<Elemento>(Elemento);
+elem3.parse([
+  {
+    id: 9,
+    nombre: 'Elemento9',
+    titulo: 'algo',
+    descripcion: lorem,
+    classType: 'element-grap',
+    contDinamico: '45',
+  },
+  {
+    id: 10,
+    nombre: 'Elemento10',
+    titulo: 'algo',
+    descripcion: lorem,
+    classType: 'element-grap',
+    contDinamico: '60',
+  },
+  {
+    id: 11,
+    nombre: 'Elemento11',
+    titulo: 'algo',
+    descripcion: lorem,
+    classType: 'element-grap',
+    contDinamico: '80',
+  },
+  {
+    id: 12,
+    nombre: 'Elemento12',
+    titulo: 'algo',
+    descripcion: lorem,
+    classType: 'element-grap',
+    contDinamico: '90',
+  },
+]);
 
-export const SECCIONES: Seccion[] = [
-  new Seccion(1, 'Experiencia', 'experiencia', 'element-list', elem1),
-  new Seccion(2, 'Formacion', 'formacion', 'element-list', elem2),
-  new Seccion(3, 'Skills', 'skills', 'element-list-table', elem3),
-  new Seccion(2, 'Idiomas', 'idiomas', 'element-list-table', elem4),
-  new Seccion(2, 'Proyectos', 'proyectos', 'element-list', elem5),
-];
+const elem4: Collection<Elemento> = new Collection<Elemento>(Elemento);
+elem4.parse([
+  {
+    id: 13,
+    nombre: 'Elemento13',
+    titulo: 'algo',
+    descripcion: lorem,
+    classType: 'element-languaje',
+    contDinamico: 'Es',
+  },
+  {
+    id: 14,
+    nombre: 'Elemento14',
+    titulo: 'algo',
+    descripcion: lorem,
+    classType: 'element-languaje',
+    contDinamico: 'En',
+  },
+]);
+
+const elem5: Collection<Elemento> = new Collection<Elemento>(Elemento);
+elem5.parse([
+  {
+    id: 15,
+    nombre: 'Elemento15',
+    titulo: 'algo',
+    descripcion: lorem,
+    classType: 'element-languaje',
+    contDinamico: 'Es',
+  },
+
+  {
+    id: 16,
+    nombre: 'Elemento16',
+    titulo: 'algo',
+    descripcion: lorem,
+    classType: 'element-languaje',
+    contDinamico: 'Es',
+  },
+  {
+    id: 17,
+    nombre: 'Elemento17',
+    titulo: 'algo',
+    descripcion: lorem,
+    classType: 'element-img',
+    contDinamico: 'crypto-trading.png',
+  },
+  {
+    id: 18,
+    nombre: 'Elemento18',
+    titulo: 'algo',
+    descripcion: lorem,
+    classType: 'element-grap',
+    contDinamico: '45',
+  },
+]);
+
+export const SECCIONES= new Collection<Seccion>(Seccion);
+SECCIONES.parse( [
+  {id: 1,nombre: 'Experiencia',className: 'experiencia',displayMode:'element-list',elementos:elem1},
+  {id: 2,nombre: 'Formacion',className: 'formacion',displayMode:'element-list',elementos:elem2},
+  {id: 3,nombre: 'Skills',className: 'skills',displayMode:'element-list-table',elementos:elem3},
+  {id: 4,nombre: 'Idiomas',className: 'idiomas',displayMode:'element-list-table',elementos:elem4},
+  {id: 5,nombre: 'Proyectos',className: 'proyectos',displayMode:'element-list',elementos:elem5},
+]);
+
+ 

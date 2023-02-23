@@ -116,6 +116,11 @@ export class ItemEditorComponent extends Autenticated {
     this.bus.change.emit(this.elemento);
   }
 
+  public cancelData():void{
+    this.elemento.revert();
+    this.modalRef?.hide();
+  }
+
   public eliminar() {
     if (confirm('Eliminar')) {
       //let i = this.colleccion.indexOf(this.elemento);
