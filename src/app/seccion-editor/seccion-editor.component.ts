@@ -19,12 +19,16 @@ export class SeccionEditorComponent {
   constructor(private formBuilder: FormBuilder, private sincro: SincroService) {
     this.formulario = this.formBuilder.group({
       seccion: ['', []],
+      displayMode: ['', []],
+      className: ['', []],
     });
   }
 
   public editarSeccion(s: Seccion) {
     this.seccion = s;
     this.formulario.get('seccion').setValue(s.nombre);
+    this.formulario.get('displayMode').setValue(s.displayMode);
+    this.formulario.get('className').setValue(s.className);
   }
 
   public eliminarSeccion(s: Seccion) {
@@ -39,10 +43,30 @@ export class SeccionEditorComponent {
   }
 
   public guardarSeccion() {
-    if (!this.seccion || this.formulario.get('seccion').value == '') return;
-
+    if (
+      this.formulario.get('displayMode').value == '' ||
+      this.formulario.get('className').value == '' ||
+      this.formulario.get('seccion').value == ''
+    )
+      return;
+    
+    if (!this.seccion){
+      this.seccion = new Seccion({
+        id: 0,
+        nombre: '',
+        className: '',
+        displayMode: '',
+      });
+      this.secciones.push(this.seccion);
+    }
+    
     this.seccion.nombre = this.formulario.get('seccion').value;
+    this.seccion.displayMode = this.formulario.get('displayMode').value;
+    this.seccion.className = this.formulario.get('className').value
+
     this.formulario.get('seccion').setValue('');
+    this.formulario.get('displayMode').setValue('');
+    this.formulario.get('className').setValue('');
     this.seccion = null;
   }
 
