@@ -9,8 +9,10 @@
             <h2>{{seccion.nombre}}</h2>
         </div>
         <app-agregador-item-seccion [seccion]="seccion"></app-agregador-item-seccion>
+        
     </div>
     <div class="{{seccion.displayMode}}" [cdkDropListData]="seccion.elementos" cdkDropList (cdkDropListDropped)="drop($event)">
         <app-item [elementos]="seccion.elementos" ></app-item>
     </div>
+    
 </section>

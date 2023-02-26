@@ -1,7 +1,7 @@
 <div  class="element" *ngFor="let elemento of elementos" cdkDrag [cdkDragDisabled]="!isLogged">
     <div [ngSwitch]="elemento.classType" class="{{elemento.classType}}">
         <picture *ngSwitchCase="'element-img'">
-            <img src="../assets/img/{{elemento.contDinamico}}" alt="">
+            <img src="{{elemento.contDinamico}}" alt="">
         </picture>
         <p *ngSwitchCase="'element-languaje'">
             {{elemento.contDinamico}}

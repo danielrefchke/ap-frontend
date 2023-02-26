@@ -1,5 +1,7 @@
 import { Component, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Collection } from '../collection';
+import { Image } from '../image';
 import { SincroService } from '../sincro.service';
 
 @Component({
@@ -15,9 +17,7 @@ import { SincroService } from '../sincro.service';
   ],
 })
 export class ImagePickerComponent implements ControlValueAccessor {
-  public imagenes?: any[] ;
-
-  
+  public imagenes?: Collection<Image> ;
 
   seleccionada: any;
 

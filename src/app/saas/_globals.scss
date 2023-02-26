@@ -88,6 +88,7 @@ footer {
   margin: 0.25rem 0.3rem;
   color: $text-color;
   padding: 1.5rem;
+  min-height: 3rem;
 }
 
 header{
@@ -96,7 +97,7 @@ header{
 
 section {
   @include maincomponents();
-  
+  min-width: 6rem;
 }
 
 button {

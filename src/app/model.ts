@@ -6,7 +6,7 @@ export class Model  {
   idAttr: string;
   isNew:boolean;
 
-  constructor(attr: {}, idAttr: string = '') {
+  constructor(attr: {}, idAttr: string = 'id') {
     this.attr = attr;
     this.prev = {};
     this.idAttr = idAttr;
@@ -48,5 +48,9 @@ export class Model  {
   change(field: string) {
     this.prev[field] = this.attr[field];
     console.log(this.prev[field]);
+  }
+
+  fetch(ctrl:any):void{
+
   }
 }

@@ -1,10 +1,18 @@
-import { Elemento } from "./elemento";
-import {  Model } from "./model";
+import { Collection } from './collection';
+import { Elemento } from './elemento';
+import { Model } from './model';
 
-export class Seccion extends Model  {
-  
-    constructor(attr: {}, idAttr: string = '') {
+export class Seccion extends Model {
+  public elementos: Collection<Elemento>;
+
+  constructor(attr: {}, idAttr: string = '') {
     super(attr);
+    this.elementos = new Collection<Elemento>(Elemento,
+       `assets/json/seccion/${this.getValue('id')}.json`);
+  }
+
+  override fetch(ctrl: any): void {
+    ctrl.fetch(this.elementos,ctrl);
   }
 
   public get id(): number {
@@ -38,7 +46,7 @@ export class Seccion extends Model  {
   public set displayMode(value: string) {
     this.setValue('displayMode', value);
   }
-
+  /*
   public get elementos(): Elemento[] {
     return this.getValue('elementos');
   }
@@ -46,8 +54,8 @@ export class Seccion extends Model  {
   public set elementos(value: Elemento[]) {
     this.setValue('elementos', value);
   }
+  */
 }
-
 
 /*
 export class Seccion {
