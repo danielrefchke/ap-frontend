@@ -47,16 +47,44 @@ export class SeccionesComponent
     this.secciones = this.sincro.Secciones;
   }
 
-  
+  showIcon(cls:string):string{
+    let result:string;
+    switch (cls) {
+      case 'element-list':
+        result = 'fa fa-bars';
+        break;
+      case 'element-list-table':
+        result = 'fa fa-th-large';
+        break;
+
+      default:
+        result = '';
+        break;
+    }
+    return result;
+  }
+
+  processClass(cls:string):string{
+    if(cls == 'element-list-table' && this.isLogged){
+      return 'element-list';
+    }
+
+    return cls;
+  }
 
   drop(event: CdkDragDrop<Elemento[]>) {
     //console.log(event);
     this.evt = event;
-    this.sincro.sincr(event.container.data[event.currentIndex], 'spinnerDrop');
     moveItemInArray(
       this.evt.container.data,
       this.evt.previousIndex,
       this.evt.currentIndex
     );
+    // asignamos el nuevo orden de los elementos
+    for (let index = 0; index < event.container.data.length; index++) {
+      const element = event.container.data[index];
+      element.orden=index+1;
+    }
+    this.sincro.sincr(event.container.data[event.currentIndex], 'spinnerDrop');
   }
 }

@@ -6,12 +6,22 @@
     </div>
     <div class="section-title row">
         <div class="title-text col">
-            <h2>{{seccion.nombre}}</h2>
+            <h2>{{seccion.nombre}}
+                <i *ngIf="isLogged" class="{{showIcon(seccion.displayMode)}}" aria-hidden="true"></i>
+            </h2>
+            <div *ngIf="isLogged" class="editcomment" [ngSwitch]="seccion.displayMode">
+                <div *ngSwitchCase="'element-list-table'">
+                    La seccion es una cuadricula, pero se muestra lineal para editar.
+                </div>
+                <div *ngSwitchCase="'element-list'">
+                    La seccion se muestra tal cual es.
+                </div>
+            </div>
         </div>
         <app-agregador-item-seccion [seccion]="seccion"></app-agregador-item-seccion>
         
     </div>
-    <div class="{{seccion.displayMode}}" [cdkDropListData]="seccion.elementos" cdkDropList (cdkDropListDropped)="drop($event)">
+    <div class="{{processClass(seccion.displayMode)}}" [cdkDropListData]="seccion.elementos" cdkDropList (cdkDropListDropped)="drop($event)">
         <app-item [elementos]="seccion.elementos" ></app-item>
     </div>
     
