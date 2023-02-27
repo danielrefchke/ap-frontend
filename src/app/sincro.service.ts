@@ -9,6 +9,7 @@ import { Collection } from './collection';
 import { IconSocialMedia } from './icon-social-media';
 import { HttpController } from './http-controler';
 import { Image } from './image';
+import { User } from './user';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +21,8 @@ export class SincroService {
   headerList: Collection<Header>;
   imgList: Collection<Image>
   iconSocialList:Collection<IconSocialMedia>;
+  users:Collection<User>;
+
   httpController = new HttpController('');
 
   @Output() loaded: EventEmitter<any> = new EventEmitter();
@@ -146,5 +149,11 @@ export class SincroService {
 
   get Secciones(): Seccion[] {
     return this.secciones;
+  }
+
+  get userList(): Collection<User> {
+    let c = new Collection<User>(User, 'assets/json/users.json');
+    this.fetch(c);
+    return c;
   }
 }

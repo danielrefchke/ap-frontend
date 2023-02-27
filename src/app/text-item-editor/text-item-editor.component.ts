@@ -28,7 +28,7 @@ export class TextItemEditorComponent implements ControlValueAccessor {
     this.valor = obj.target.value;
     this.onTouch();
     this.onChange(this.valor);
-    console.log(this.valor);
+    //console.log(this.valor);
   }
 
   writeValue(obj: string): void {

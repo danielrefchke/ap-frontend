@@ -17,7 +17,9 @@ export class Model  {
     this.isNew= false;
   }
 
-  toJson() {}
+  toJson():string{
+    return JSON.stringify(this.attr);
+  }
 
   isChanged(): boolean {
     return Object.keys(this.prev).length > 0;

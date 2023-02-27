@@ -41,7 +41,7 @@
             
             <button *ngIf="!IsLoged" type="cancel" class="btn btn-secondary" (click)="modalRef.hide()">Cancelar</button>
             <button *ngIf="!IsLoged" type="submit" class="btn btn-primary" data-dismiss="modal"
-                (click)="onEnviar($event)">Acceder</button>
+                (click)="onEnviar($event)" [disabled]="!loguinform.valid">Acceder</button>
         </div>
     </form>
 </ng-template>

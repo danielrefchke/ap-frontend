@@ -31,6 +31,10 @@ import { IconPickerComponent } from './icon-picker/icon-picker.component';
 import { ItemTipoEditorComponent } from './item-tipo-editor/item-tipo-editor.component';
 import { GraphItemEditorComponent } from './graph-item-editor/graph-item-editor.component';
 import { TextItemEditorComponent } from './text-item-editor/text-item-editor.component';
+import { ConfigEditorComponent } from './config-editor/config-editor.component';
+import { UserEditorComponent } from './user-editor/user-editor.component';
+import { IconEditorComponent } from './icon-editor/icon-editor.component';
+import { ListUserEditorComponent } from './list-user-editor/list-user-editor.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +56,10 @@ import { TextItemEditorComponent } from './text-item-editor/text-item-editor.com
     ItemTipoEditorComponent,
     GraphItemEditorComponent,
     TextItemEditorComponent,
+    ConfigEditorComponent,
+    UserEditorComponent,
+    IconEditorComponent,
+    ListUserEditorComponent,
   ],
   imports: [
     BrowserModule,

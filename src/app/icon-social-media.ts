@@ -18,11 +18,11 @@ export class IconSocialMedia extends Model {
     this.setValue('nombre', value);
   }
 
-  public get cssclas(): string {
+  public get cssclass(): string {
     return this.getValue('cssclas');
   }
 
-  public set cssclas(value: string) {
+  public set cssclass(value: string) {
     this.setValue('cssclas', value);
   }
 }

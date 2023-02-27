@@ -17,7 +17,7 @@
 </div>
 
 <div [cdkDropListData]="social" cdkDropList (cdkDropListDropped)="drop($event)">
-    <div class="row edtsocial" *ngFor="let lnk of social" cdkDrag style="z-index: 999;">
+    <div class="row edtsocial" *ngFor="let lnk of social" cdkDrag style="z-index: 9999;">
         <div class="col"><i class="fa fa-lg {{lnk.icon}}"></i></div>
         <div class="col">{{lnk.url}}</div>
         <div class="col">

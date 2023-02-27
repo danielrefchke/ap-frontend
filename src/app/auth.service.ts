@@ -41,8 +41,13 @@ export class AuthService {
     this.spinner.show('spinnerLogin');
     setTimeout(() => {
       if (user == 'admin' && password == '12345678') {
-        self.user = new User(1, user, 'token');
-        localStorage.setItem('user', JSON.stringify(this.user));
+        self.user = new User({
+          id: 1,
+          nombre: user,
+          token: 'token',
+          password: '12345678',
+        });
+        localStorage.setItem('user', this.user.toJson());
         self.processStatus = true;
         this.logged.emit(true);
         this.toastr.success(`Bienvenido ${user}`, 'Acceso exitoso');
@@ -69,11 +74,18 @@ export class AuthService {
       let usr = localStorage.getItem('user');
       if (usr) {
         let t = JSON.parse(usr);
-        this.user = new User(t.id, t.nombre, t.token);
+        this.user = new User(t);
 
         return true;
       }
     }
     return false;
+  }
+
+  userLogged():User{
+    if(this.isLogged()){
+      return this.user;
+    }
+    return null;
   }
 }

@@ -13,6 +13,19 @@
     color: globals.$header-footer-text-color;
   }
 
+  .config-button{
+    text-align: end;
+    margin-bottom: -2rem;
+    z-index: revert;
+    position: relative;
+    margin: auto 4rem -2rem auto;
+    max-width: 3rem;
+    max-height: 3rem;
+    cursor: pointer;
+    color: globals.$header-footer-text-color;
+    top: -0.5rem;
+  }
+
   .banner {
     picture .img-banner {
       margin: auto;
